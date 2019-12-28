@@ -1,0 +1,1250 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 { 
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body { 
+			font-family : segoe ui;
+		}
+
+		td, th {  
+			padding: 0.5em;
+			text-align : left;
+		}
+		th { 
+			background-color : #EEEEEE;
+		
+		}
+		th.column1, td.column1 { 
+			width : 50%; 
+		}
+
+        th.column2, td.column2 {
+            width : 25%;
+        }
+
+		table { 
+			width : 100%; 
+            font-size: 0.9em;
+		}
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 5em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error { 
+			color : red;
+			font-weight : bold;
+		}	
+		tr.onmouseout_odd { 
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+			
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);		
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {	
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}	
+	</script><title>Net Status Report</title>
+</head>
+<body onload="document.getElementById('radio_mm').click()"><img ALT="Altium" src="
+			file://D:\Program Files\Altium\AD19\Share\Templates\AD_logo.png
+		"><a href="dxpprocess://Client:SetupPreferences?Server=PCB|PageName=Reports" class="customize"><acronym title="dxpprocess://Client:SetupPreferences?Server=PCB|PageName=Reports">customize</acronym></a><h1>Net Status Report</h1>
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2019/12/14</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">17:37:44</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:00</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc" class="file"><acronym title="E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc">E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc</acronym></a></td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Units:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">
+<form><input type="radio" name="radio_units" id="radio_mm" onclick="changeUnits(this, 'mm')">mm<input type="radio" name="radio_units" id="radio_mil" onclick="changeUnits(this, 'mil')">mils</form>
+</td>
+</tr>
+</table><a name="ID3CDWSNY5VBR2HMVKRVS4KKRKHLZSAKKOXKKP5ELG43LYLYYGJ5FL"><table>
+<tr>
+<th class="column1">Nets</th>
+<th class="column2">Layer</th>
+<th class="column3">Length</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1844.307mil|Location2.X=13545mil|Location1.Y=888.441mil|Location2.Y=5320.591mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1844.307mil|Location2.X=13545mil|Location1.Y=888.441mil|Location2.Y=5320.591mil|Absolute=True">3V3</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="242760396">616.6114mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=386mil|Location2.X=9164mil|Location1.Y=5067.126mil|Location2.Y=5372.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=386mil|Location2.X=9164mil|Location1.Y=5067.126mil|Location2.Y=5372.874mil|Absolute=True">3V7</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="93417360">237.2801mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1516.669mil|Location2.X=3533.331mil|Location1.Y=5098.441mil|Location2.Y=5382.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1516.669mil|Location2.X=3533.331mil|Location1.Y=5098.441mil|Location2.Y=5382.874mil|Absolute=True">5V</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="23474083">59.6242mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6520.488mil|Location2.X=12083.622mil|Location1.Y=345mil|Location2.Y=1811.829mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6520.488mil|Location2.X=12083.622mil|Location1.Y=345mil|Location2.Y=1811.829mil|Absolute=True">AT</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="69365323">176.1879mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11596.843mil|Location2.X=13184mil|Location1.Y=2081.688mil|Location2.Y=2485mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11596.843mil|Location2.X=13184mil|Location1.Y=2081.688mil|Location2.Y=2485mil|Absolute=True">BOOT0</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="19808436">50.3134mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11879.252mil|Location2.X=13189mil|Location1.Y=1614.189mil|Location2.Y=1999mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11879.252mil|Location2.X=13189mil|Location1.Y=1614.189mil|Location2.Y=1999mil|Absolute=True">BOOT1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="15295243">38.8499mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=291.473mil|Location2.X=13298.528mil|Location1.Y=4214.189mil|Location2.Y=5010mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=291.473mil|Location2.X=13298.528mil|Location1.Y=4214.189mil|Location2.Y=5010mil|Absolute=True">COM0</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="152641290">387.7089mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=296.473mil|Location2.X=12548.528mil|Location1.Y=3856.472mil|Location2.Y=4295.811mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=296.473mil|Location2.X=12548.528mil|Location1.Y=3856.472mil|Location2.Y=4295.811mil|Absolute=True">COM1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="140564096">357.0328mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=481.473mil|Location2.X=12548.528mil|Location1.Y=3111.472mil|Location2.Y=4345.811mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=481.473mil|Location2.X=12548.528mil|Location1.Y=3111.472mil|Location2.Y=4345.811mil|Absolute=True">COM2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="150691890">382.7574mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=576.472mil|Location2.X=13298.528mil|Location1.Y=2361.472mil|Location2.Y=4395.811mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=576.472mil|Location2.X=13298.528mil|Location1.Y=2361.472mil|Location2.Y=4395.811mil|Absolute=True">COM3</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="175189964">444.9825mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=766.472mil|Location2.X=13510mil|Location1.Y=1119.189mil|Location2.Y=4445.811mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=766.472mil|Location2.X=13510mil|Location1.Y=1119.189mil|Location2.Y=4445.811mil|Absolute=True">COM4</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="196728223">499.6897mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=391.473mil|Location2.X=13298.528mil|Location1.Y=715mil|Location2.Y=4495.811mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=391.473mil|Location2.X=13298.528mil|Location1.Y=715mil|Location2.Y=4495.811mil|Absolute=True">COM5</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="181136694">460.0872mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=193.638mil|Location2.X=13439mil|Location1.Y=376.63mil|Location2.Y=5356.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=193.638mil|Location2.X=13439mil|Location1.Y=376.63mil|Location2.Y=5356.559mil|Absolute=True">GND</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="27325508">69.4068mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1283.638mil|Location2.X=11692.91mil|Location1.Y=1815mil|Location2.Y=4295.811mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1283.638mil|Location2.X=11692.91mil|Location1.Y=1815mil|Location2.Y=4295.811mil|Absolute=True">I2C1_SCL</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="127868623">324.7863mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1283.638mil|Location2.X=11706.829mil|Location1.Y=1840mil|Location2.Y=4245.811mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1283.638mil|Location2.X=11706.829mil|Location1.Y=1840mil|Location2.Y=4245.811mil|Absolute=True">I2C1_SDA</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="126655581">321.7052mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11588.795mil|Location2.X=12225.811mil|Location1.Y=1694.728mil|Location2.Y=5313.685mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11588.795mil|Location2.X=12225.811mil|Location1.Y=1694.728mil|Location2.Y=5313.685mil|Absolute=True">LED</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="41491201">105.3877mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=586mil|Location2.X=4815.693mil|Location1.Y=5042.126mil|Location2.Y=5288.685mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=586mil|Location2.X=4815.693mil|Location1.Y=5042.126mil|Location2.Y=5288.685mil|Absolute=True">LED3V3</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="43906537">111.5226mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=260mil|Location2.X=1364.472mil|Location1.Y=861.472mil|Location2.Y=4863.528mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=260mil|Location2.X=1364.472mil|Location1.Y=861.472mil|Location2.Y=4863.528mil|Absolute=True">LRow0</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="60229609">152.9832mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1010mil|Location2.X=2148.528mil|Location1.Y=861.472mil|Location2.Y=4863.528mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1010mil|Location2.X=2148.528mil|Location1.Y=861.472mil|Location2.Y=4863.528mil|Absolute=True">LRow1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="66698924">169.4153mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1283.638mil|Location2.X=13398.528mil|Location1.Y=861.472mil|Location2.Y=4863.528mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1283.638mil|Location2.X=13398.528mil|Location1.Y=861.472mil|Location2.Y=4863.528mil|Absolute=True">LRow10</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="176729372">448.8926mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=915.528mil|Location2.X=10308.528mil|Location1.Y=1611.473mil|Location2.Y=4865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=915.528mil|Location2.X=10308.528mil|Location1.Y=1611.473mil|Location2.Y=4865mil|Absolute=True">LRow11</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="142047362">360.8003mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=895mil|Location2.X=12648.528mil|Location1.Y=1139.189mil|Location2.Y=4880.905mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=895mil|Location2.X=12648.528mil|Location1.Y=1139.189mil|Location2.Y=4880.905mil|Absolute=True">LRow12</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="173976531">441.9004mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=879.095mil|Location2.X=11935mil|Location1.Y=3111.472mil|Location2.Y=4900mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=879.095mil|Location2.X=11935mil|Location1.Y=3111.472mil|Location2.Y=4900mil|Absolute=True">LRow13</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="137013783">348.015mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=863.189mil|Location2.X=12685mil|Location1.Y=3111.472mil|Location2.Y=4915.905mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=863.189mil|Location2.X=12685mil|Location1.Y=3111.472mil|Location2.Y=4915.905mil|Absolute=True">LRow14</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="142156344">361.0771mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=840mil|Location2.X=13425mil|Location1.Y=3111.472mil|Location2.Y=4931.811mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=840mil|Location2.X=13425mil|Location1.Y=3111.472mil|Location2.Y=4931.811mil|Absolute=True">LRow15</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="166175488">422.0857mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1283.638mil|Location2.X=2898.528mil|Location1.Y=861.472mil|Location2.Y=4863.528mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1283.638mil|Location2.X=2898.528mil|Location1.Y=861.472mil|Location2.Y=4863.528mil|Absolute=True">LRow2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="67308445">170.9635mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1283.638mil|Location2.X=5243.528mil|Location1.Y=820mil|Location2.Y=4863.528mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1283.638mil|Location2.X=5243.528mil|Location1.Y=820mil|Location2.Y=4863.528mil|Absolute=True">LRow3</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="89871675">228.2741mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1283.638mil|Location2.X=8058.528mil|Location1.Y=730mil|Location2.Y=4863.528mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1283.638mil|Location2.X=8058.528mil|Location1.Y=730mil|Location2.Y=4863.528mil|Absolute=True">LRow4</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="117155048">297.5738mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1283.638mil|Location2.X=8993.528mil|Location1.Y=755mil|Location2.Y=4863.528mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1283.638mil|Location2.X=8993.528mil|Location1.Y=755mil|Location2.Y=4863.528mil|Absolute=True">LRow5</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="131863917">334.9343mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1283.638mil|Location2.X=9933.528mil|Location1.Y=830mil|Location2.Y=4863.528mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1283.638mil|Location2.X=9933.528mil|Location1.Y=830mil|Location2.Y=4863.528mil|Absolute=True">LRow6</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="146245739">371.4642mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1283.638mil|Location2.X=10868.528mil|Location1.Y=861.472mil|Location2.Y=4863.528mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1283.638mil|Location2.X=10868.528mil|Location1.Y=861.472mil|Location2.Y=4863.528mil|Absolute=True">LRow7</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="153692014">390.3777mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1283.638mil|Location2.X=11898.528mil|Location1.Y=805mil|Location2.Y=4863.528mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1283.638mil|Location2.X=11898.528mil|Location1.Y=805mil|Location2.Y=4863.528mil|Absolute=True">LRow8</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="161785602">410.9354mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1283.638mil|Location2.X=12648.528mil|Location1.Y=861.472mil|Location2.Y=4863.528mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1283.638mil|Location2.X=12648.528mil|Location1.Y=861.472mil|Location2.Y=4863.528mil|Absolute=True">LRow9</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="177041773">449.6861mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11907.09mil|Location2.X=13480mil|Location1.Y=1244.882mil|Location2.Y=2220.811mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11907.09mil|Location2.X=13480mil|Location1.Y=1244.882mil|Location2.Y=2220.811mil|Absolute=True">NRST</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="25169763">63.9312mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13131mil|Location2.X=13339mil|Location1.Y=2016mil|Location2.Y=2214mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13131mil|Location2.X=13339mil|Location1.Y=2016mil|Location2.Y=2214mil|Absolute=True">NetBOOT_3</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2202082">5.5933mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13126mil|Location2.X=13439mil|Location1.Y=2136mil|Location2.Y=2304mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13126mil|Location2.X=13439mil|Location1.Y=2136mil|Location2.Y=2304mil|Absolute=True">NetBOOT_4</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2834924">7.2007mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=100mil|Location2.X=6634.787mil|Location1.Y=360mil|Location2.Y=5233.685mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=100mil|Location2.X=6634.787mil|Location1.Y=360mil|Location2.Y=5233.685mil|Absolute=True">NetBTK-05_25</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="113753853">288.9348mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6225.213mil|Location2.X=12607.701mil|Location1.Y=376.63mil|Location2.Y=5143.685mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6225.213mil|Location2.X=12607.701mil|Location1.Y=376.63mil|Location2.Y=5143.685mil|Absolute=True">NetBTK-05_31</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="116030965">294.7187mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4261.591mil|Location2.X=4554.709mil|Location1.Y=5132.181mil|Location2.Y=5198.685mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4261.591mil|Location2.X=4554.709mil|Location1.Y=5132.181mil|Location2.Y=5198.685mil|Absolute=True">NetC10_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2651337">6.7344mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7891.591mil|Location2.X=8229.709mil|Location1.Y=5156.315mil|Location2.Y=5218.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7891.591mil|Location2.X=8229.709mil|Location1.Y=5156.315mil|Location2.Y=5218.213mil|Absolute=True">NetC14_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="3091597">7.8527mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12495.961mil|Location2.X=12544.709mil|Location1.Y=5096.315mil|Location2.Y=5271.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12495.961mil|Location2.X=12544.709mil|Location1.Y=5096.315mil|Location2.Y=5271.559mil|Absolute=True">NetCAPS_LED_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1213861">3.0832mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7601.787mil|Location2.X=7839.748mil|Location1.Y=4476.787mil|Location2.Y=4624.748mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7601.787mil|Location2.X=7839.748mil|Location1.Y=4476.787mil|Location2.Y=4624.748mil|Absolute=True">NetD10_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2014541">5.1169mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8726.787mil|Location2.X=8978.268mil|Location1.Y=4476.787mil|Location2.Y=4627.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8726.787mil|Location2.X=8978.268mil|Location1.Y=4476.787mil|Location2.Y=4627.189mil|Absolute=True">NetD11_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1968949">5.0011mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9476.787mil|Location2.X=9718.685mil|Location1.Y=4476.787mil|Location2.Y=4627.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9476.787mil|Location2.X=9718.685mil|Location1.Y=4476.787mil|Location2.Y=4627.189mil|Absolute=True">NetD12_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1873123">4.7577mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10226.787mil|Location2.X=10468.685mil|Location1.Y=4476.787mil|Location2.Y=4627.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10226.787mil|Location2.X=10468.685mil|Location1.Y=4476.787mil|Location2.Y=4627.189mil|Absolute=True">NetD13_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1873123">4.7577mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10976.787mil|Location2.X=11203.685mil|Location1.Y=4476.787mil|Location2.Y=4622.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10976.787mil|Location2.X=11203.685mil|Location1.Y=4476.787mil|Location2.Y=4622.189mil|Absolute=True">NetD14_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1873123">4.7577mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11911.787mil|Location2.X=12138.685mil|Location1.Y=4476.787mil|Location2.Y=4622.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11911.787mil|Location2.X=12138.685mil|Location1.Y=4476.787mil|Location2.Y=4622.189mil|Absolute=True">NetD15_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1873123">4.7577mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12661.787mil|Location2.X=12893.685mil|Location1.Y=4476.787mil|Location2.Y=4624.748mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12661.787mil|Location2.X=12893.685mil|Location1.Y=4476.787mil|Location2.Y=4624.748mil|Absolute=True">NetD16_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1854433">4.7103mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13411.787mil|Location2.X=13638.685mil|Location1.Y=4476.787mil|Location2.Y=4617.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13411.787mil|Location2.X=13638.685mil|Location1.Y=4476.787mil|Location2.Y=4617.189mil|Absolute=True">NetD17_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1750060">4.4452mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=476.787mil|Location2.X=713.685mil|Location1.Y=3541.787mil|Location2.Y=3692.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=476.787mil|Location2.X=713.685mil|Location1.Y=3541.787mil|Location2.Y=3692.189mil|Absolute=True">NetD18_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1943834">4.9373mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1226.787mil|Location2.X=1464.102mil|Location1.Y=3541.787mil|Location2.Y=3692.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1226.787mil|Location2.X=1464.102mil|Location1.Y=3541.787mil|Location2.Y=3692.189mil|Absolute=True">NetD19_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1948000">4.9479mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1971.787mil|Location2.X=2214.518mil|Location1.Y=3541.787mil|Location2.Y=3692.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1971.787mil|Location2.X=2214.518mil|Location1.Y=3541.787mil|Location2.Y=3692.189mil|Absolute=True">NetD20_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2002166">5.0855mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2726.787mil|Location2.X=2964.935mil|Location1.Y=3541.787mil|Location2.Y=3692.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2726.787mil|Location2.X=2964.935mil|Location1.Y=3541.787mil|Location2.Y=3692.189mil|Absolute=True">NetD21_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1956332">4.9691mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3476.787mil|Location2.X=3715.351mil|Location1.Y=3541.787mil|Location2.Y=3692.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3476.787mil|Location2.X=3715.351mil|Location1.Y=3541.787mil|Location2.Y=3692.189mil|Absolute=True">NetD22_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1960498">4.9797mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4226.787mil|Location2.X=4465.768mil|Location1.Y=3541.787mil|Location2.Y=3692.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4226.787mil|Location2.X=4465.768mil|Location1.Y=3541.787mil|Location2.Y=3692.189mil|Absolute=True">NetD23_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1964664">4.9902mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4976.787mil|Location2.X=5216.185mil|Location1.Y=3541.787mil|Location2.Y=3692.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4976.787mil|Location2.X=5216.185mil|Location1.Y=3541.787mil|Location2.Y=3692.189mil|Absolute=True">NetD24_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1968830">5.0008mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5726.787mil|Location2.X=5966.601mil|Location1.Y=3536.787mil|Location2.Y=3692.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5726.787mil|Location2.X=5966.601mil|Location1.Y=3536.787mil|Location2.Y=3692.189mil|Absolute=True">NetD25_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1993706">5.064mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6476.787mil|Location2.X=6717.018mil|Location1.Y=3541.787mil|Location2.Y=3692.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6476.787mil|Location2.X=6717.018mil|Location1.Y=3541.787mil|Location2.Y=3692.189mil|Absolute=True">NetD26_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1977162">5.022mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7226.787mil|Location2.X=7467.434mil|Location1.Y=3541.787mil|Location2.Y=3692.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7226.787mil|Location2.X=7467.434mil|Location1.Y=3541.787mil|Location2.Y=3692.189mil|Absolute=True">NetD27_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1981327">5.0326mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7976.787mil|Location2.X=8217.851mil|Location1.Y=3541.787mil|Location2.Y=3692.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7976.787mil|Location2.X=8217.851mil|Location1.Y=3541.787mil|Location2.Y=3692.189mil|Absolute=True">NetD28_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1985493">5.0432mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8726.787mil|Location2.X=8968.268mil|Location1.Y=3541.787mil|Location2.Y=3692.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8726.787mil|Location2.X=8968.268mil|Location1.Y=3541.787mil|Location2.Y=3692.189mil|Absolute=True">NetD29_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1989659">5.0537mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=471.787mil|Location2.X=708.685mil|Location1.Y=4476.787mil|Location2.Y=4622.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=471.787mil|Location2.X=708.685mil|Location1.Y=4476.787mil|Location2.Y=4622.189mil|Absolute=True">NetD2_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2172938">5.5193mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9476.787mil|Location2.X=9718.684mil|Location1.Y=3541.787mil|Location2.Y=3692.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9476.787mil|Location2.X=9718.684mil|Location1.Y=3541.787mil|Location2.Y=3692.189mil|Absolute=True">NetD30_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1993825">5.0643mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10601.787mil|Location2.X=10838.685mil|Location1.Y=3541.787mil|Location2.Y=3699.748mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10601.787mil|Location2.X=10838.685mil|Location1.Y=3541.787mil|Location2.Y=3699.748mil|Absolute=True">NetD31_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1975144">5.0169mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11911.787mil|Location2.X=12153.685mil|Location1.Y=3541.787mil|Location2.Y=3709.748mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11911.787mil|Location2.X=12153.685mil|Location1.Y=3541.787mil|Location2.Y=3709.748mil|Absolute=True">NetD32_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2066565">5.2491mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12661.787mil|Location2.X=12898.685mil|Location1.Y=3541.787mil|Location2.Y=3687.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12661.787mil|Location2.X=12898.685mil|Location1.Y=3541.787mil|Location2.Y=3687.189mil|Absolute=True">NetD33_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1923123">4.8847mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=661.787mil|Location2.X=913.685mil|Location1.Y=2791.787mil|Location2.Y=2922.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=661.787mil|Location2.X=913.685mil|Location1.Y=2791.787mil|Location2.Y=2922.189mil|Absolute=True">NetD34_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2010990">5.1079mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13411.787mil|Location2.X=13633.685mil|Location1.Y=3541.787mil|Location2.Y=3702.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13411.787mil|Location2.X=13633.685mil|Location1.Y=3541.787mil|Location2.Y=3702.189mil|Absolute=True">NetD35_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1812192">4.603mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2351.787mil|Location2.X=2584.594mil|Location1.Y=2791.787mil|Location2.Y=2957.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2351.787mil|Location2.X=2584.594mil|Location1.Y=2791.787mil|Location2.Y=2957.189mil|Absolute=True">NetD36_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1941992">4.9327mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3101.787mil|Location2.X=3335.503mil|Location1.Y=2791.787mil|Location2.Y=2957.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3101.787mil|Location2.X=3335.503mil|Location1.Y=2791.787mil|Location2.Y=2957.189mil|Absolute=True">NetD37_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1974146">5.0143mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3851.787mil|Location2.X=4086.412mil|Location1.Y=2791.787mil|Location2.Y=2957.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3851.787mil|Location2.X=4086.412mil|Location1.Y=2791.787mil|Location2.Y=2957.189mil|Absolute=True">NetD38_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1983236">5.0374mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4601.787mil|Location2.X=4837.321mil|Location1.Y=2791.787mil|Location2.Y=2957.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4601.787mil|Location2.X=4837.321mil|Location1.Y=2791.787mil|Location2.Y=2957.189mil|Absolute=True">NetD39_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1992326">5.0605mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1973.284mil|Location2.X=2204.518mil|Location1.Y=4476.787mil|Location2.Y=4617.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1973.284mil|Location2.X=2204.518mil|Location1.Y=4476.787mil|Location2.Y=4617.189mil|Absolute=True">NetD3_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1987205">5.0475mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5351.787mil|Location2.X=5588.23mil|Location1.Y=2791.787mil|Location2.Y=2957.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5351.787mil|Location2.X=5588.23mil|Location1.Y=2791.787mil|Location2.Y=2957.189mil|Absolute=True">NetD40_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2001416">5.0836mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6101.787mil|Location2.X=6339.139mil|Location1.Y=2791.787mil|Location2.Y=2957.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6101.787mil|Location2.X=6339.139mil|Location1.Y=2791.787mil|Location2.Y=2957.189mil|Absolute=True">NetD41_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2010506">5.1067mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6851.787mil|Location2.X=7090.048mil|Location1.Y=2791.787mil|Location2.Y=2957.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6851.787mil|Location2.X=7090.048mil|Location1.Y=2791.787mil|Location2.Y=2957.189mil|Absolute=True">NetD42_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2019595">5.1298mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7601.787mil|Location2.X=7840.957mil|Location1.Y=2791.787mil|Location2.Y=2957.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7601.787mil|Location2.X=7840.957mil|Location1.Y=2791.787mil|Location2.Y=2957.189mil|Absolute=True">NetD43_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2028685">5.1529mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8351.787mil|Location2.X=8591.866mil|Location1.Y=2791.787mil|Location2.Y=2957.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8351.787mil|Location2.X=8591.866mil|Location1.Y=2791.787mil|Location2.Y=2957.189mil|Absolute=True">NetD44_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2037775">5.1759mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9101.787mil|Location2.X=9342.775mil|Location1.Y=2791.787mil|Location2.Y=2957.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9101.787mil|Location2.X=9342.775mil|Location1.Y=2791.787mil|Location2.Y=2957.189mil|Absolute=True">NetD45_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2046865">5.199mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9851.787mil|Location2.X=10093.684mil|Location1.Y=2791.787mil|Location2.Y=2957.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9851.787mil|Location2.X=10093.684mil|Location1.Y=2791.787mil|Location2.Y=2957.189mil|Absolute=True">NetD46_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2055955">5.2221mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10786.787mil|Location2.X=11028.685mil|Location1.Y=2791.787mil|Location2.Y=2942.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10786.787mil|Location2.X=11028.685mil|Location1.Y=2791.787mil|Location2.Y=2942.189mil|Absolute=True">NetD47_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1993833">5.0643mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11911.787mil|Location2.X=12153.685mil|Location1.Y=2791.787mil|Location2.Y=2952.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11911.787mil|Location2.X=12153.685mil|Location1.Y=2791.787mil|Location2.Y=2952.189mil|Absolute=True">NetD48_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2035255">5.1695mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12661.787mil|Location2.X=12893.685mil|Location1.Y=2791.787mil|Location2.Y=2949.748mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12661.787mil|Location2.X=12893.685mil|Location1.Y=2791.787mil|Location2.Y=2949.748mil|Absolute=True">NetD49_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1925144">4.8899mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2726.787mil|Location2.X=2958.685mil|Location1.Y=4476.787mil|Location2.Y=4617.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2726.787mil|Location2.X=2958.685mil|Location1.Y=4476.787mil|Location2.Y=4617.189mil|Absolute=True">NetD4_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1993834">5.0643mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=756.787mil|Location2.X=1003.685mil|Location1.Y=2041.787mil|Location2.Y=2207.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=756.787mil|Location2.X=1003.685mil|Location1.Y=2041.787mil|Location2.Y=2207.189mil|Absolute=True">NetD50_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2105966">5.3492mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1786.787mil|Location2.X=2033.685mil|Location1.Y=2041.787mil|Location2.Y=2192.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1786.787mil|Location2.X=2033.685mil|Location1.Y=2041.787mil|Location2.Y=2192.189mil|Absolute=True">NetD51_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2043834">5.1913mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2541.787mil|Location2.X=2783.185mil|Location1.Y=2041.787mil|Location2.Y=2192.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2541.787mil|Location2.X=2783.185mil|Location1.Y=2041.787mil|Location2.Y=2192.189mil|Absolute=True">NetD52_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1988834">5.0516mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3286.787mil|Location2.X=3532.685mil|Location1.Y=2041.787mil|Location2.Y=2192.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3286.787mil|Location2.X=3532.685mil|Location1.Y=2041.787mil|Location2.Y=2192.189mil|Absolute=True">NetD53_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2033834">5.1659mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4036.787mil|Location2.X=4282.185mil|Location1.Y=2041.787mil|Location2.Y=2192.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4036.787mil|Location2.X=4282.185mil|Location1.Y=2041.787mil|Location2.Y=2192.189mil|Absolute=True">NetD54_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2028834">5.1532mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4791.787mil|Location2.X=5031.685mil|Location1.Y=2041.787mil|Location2.Y=2192.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4791.787mil|Location2.X=5031.685mil|Location1.Y=2041.787mil|Location2.Y=2192.189mil|Absolute=True">NetD55_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1973834">5.0135mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5536.787mil|Location2.X=5781.185mil|Location1.Y=2041.787mil|Location2.Y=2192.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5536.787mil|Location2.X=5781.185mil|Location1.Y=2041.787mil|Location2.Y=2192.189mil|Absolute=True">NetD56_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2018834">5.1278mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6286.787mil|Location2.X=6530.685mil|Location1.Y=2041.787mil|Location2.Y=2192.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6286.787mil|Location2.X=6530.685mil|Location1.Y=2041.787mil|Location2.Y=2192.189mil|Absolute=True">NetD57_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2013834">5.1151mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7036.787mil|Location2.X=7280.185mil|Location1.Y=2041.787mil|Location2.Y=2192.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7036.787mil|Location2.X=7280.185mil|Location1.Y=2041.787mil|Location2.Y=2192.189mil|Absolute=True">NetD58_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2008833">5.1024mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7791.787mil|Location2.X=8029.685mil|Location1.Y=2041.787mil|Location2.Y=2192.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7791.787mil|Location2.X=8029.685mil|Location1.Y=2041.787mil|Location2.Y=2192.189mil|Absolute=True">NetD59_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1953833">4.9627mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3478.284mil|Location2.X=3715.351mil|Location1.Y=4476.787mil|Location2.Y=4629.748mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3478.284mil|Location2.X=3715.351mil|Location1.Y=4476.787mil|Location2.Y=4629.748mil|Absolute=True">NetD5_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1958161">4.9737mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8536.787mil|Location2.X=8779.185mil|Location1.Y=2041.787mil|Location2.Y=2192.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8536.787mil|Location2.X=8779.185mil|Location1.Y=2041.787mil|Location2.Y=2192.189mil|Absolute=True">NetD60_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1998833">5.077mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9286.787mil|Location2.X=9528.685mil|Location1.Y=2041.787mil|Location2.Y=2192.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9286.787mil|Location2.X=9528.685mil|Location1.Y=2041.787mil|Location2.Y=2192.189mil|Absolute=True">NetD61_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1993833">5.0643mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10506.787mil|Location2.X=10738.685mil|Location1.Y=2041.787mil|Location2.Y=2204.748mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10506.787mil|Location2.X=10738.685mil|Location1.Y=2041.787mil|Location2.Y=2204.748mil|Absolute=True">NetD62_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1945855">4.9425mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1601.787mil|Location2.X=1833.685mil|Location1.Y=2791.787mil|Location2.Y=2957.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1601.787mil|Location2.X=1833.685mil|Location1.Y=2791.787mil|Location2.Y=2957.189mil|Absolute=True">NetD63_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1932903">4.9096mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13411.787mil|Location2.X=13638.685mil|Location1.Y=2791.787mil|Location2.Y=2959.748mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13411.787mil|Location2.X=13638.685mil|Location1.Y=2791.787mil|Location2.Y=2959.748mil|Absolute=True">NetD64_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1893502">4.8095mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=946.787mil|Location2.X=1173.685mil|Location1.Y=1291.787mil|Location2.Y=1447.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=946.787mil|Location2.X=1173.685mil|Location1.Y=1291.787mil|Location2.Y=1447.189mil|Absolute=True">NetD66_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1914358">4.8625mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2161.787mil|Location2.X=2398.685mil|Location1.Y=1291.787mil|Location2.Y=1442.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2161.787mil|Location2.X=2398.685mil|Location1.Y=1291.787mil|Location2.Y=1442.189mil|Absolute=True">NetD67_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2110805">5.3614mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2911.787mil|Location2.X=3149.24mil|Location1.Y=1291.787mil|Location2.Y=1442.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2911.787mil|Location2.X=3149.24mil|Location1.Y=1291.787mil|Location2.Y=1442.189mil|Absolute=True">NetD68_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2171685">5.5161mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3661.787mil|Location2.X=3899.796mil|Location1.Y=1291.787mil|Location2.Y=1442.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3661.787mil|Location2.X=3899.796mil|Location1.Y=1291.787mil|Location2.Y=1442.189mil|Absolute=True">NetD69_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2144696">5.4475mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4226.787mil|Location2.X=4468.685mil|Location1.Y=4476.787mil|Location2.Y=4627.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4226.787mil|Location2.X=4468.685mil|Location1.Y=4476.787mil|Location2.Y=4627.189mil|Absolute=True">NetD6_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1993834">5.0643mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4416.787mil|Location2.X=4650.351mil|Location1.Y=1291.787mil|Location2.Y=1442.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4416.787mil|Location2.X=4650.351mil|Location1.Y=1291.787mil|Location2.Y=1442.189mil|Absolute=True">NetD70_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2126287">5.4008mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5166.787mil|Location2.X=5400.907mil|Location1.Y=1291.787mil|Location2.Y=1442.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5166.787mil|Location2.X=5400.907mil|Location1.Y=1291.787mil|Location2.Y=1442.189mil|Absolute=True">NetD71_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2187166">5.5554mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5911.787mil|Location2.X=6151.462mil|Location1.Y=1291.787mil|Location2.Y=1442.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5911.787mil|Location2.X=6151.462mil|Location1.Y=1291.787mil|Location2.Y=1442.189mil|Absolute=True">NetD72_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2218756">5.6356mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6661.787mil|Location2.X=6902.018mil|Location1.Y=1291.787mil|Location2.Y=1442.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6661.787mil|Location2.X=6902.018mil|Location1.Y=1291.787mil|Location2.Y=1442.189mil|Absolute=True">NetD73_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2183189">5.5453mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7411.787mil|Location2.X=7652.574mil|Location1.Y=1291.787mil|Location2.Y=1442.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7411.787mil|Location2.X=7652.574mil|Location1.Y=1291.787mil|Location2.Y=1442.189mil|Absolute=True">NetD74_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2244069">5.6999mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8161.787mil|Location2.X=8403.129mil|Location1.Y=1291.787mil|Location2.Y=1442.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8161.787mil|Location2.X=8403.129mil|Location1.Y=1291.787mil|Location2.Y=1442.189mil|Absolute=True">NetD75_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2217081">5.6314mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8911.787mil|Location2.X=9153.684mil|Location1.Y=1291.787mil|Location2.Y=1442.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8911.787mil|Location2.X=9153.684mil|Location1.Y=1291.787mil|Location2.Y=1442.189mil|Absolute=True">NetD76_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1970766">5.0057mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10321.787mil|Location2.X=10553.685mil|Location1.Y=1291.787mil|Location2.Y=1417.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10321.787mil|Location2.X=10553.685mil|Location1.Y=1291.787mil|Location2.Y=1417.189mil|Absolute=True">NetD77_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1863156">4.7324mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12661.787mil|Location2.X=12903.685mil|Location1.Y=1291.787mil|Location2.Y=1442.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12661.787mil|Location2.X=12903.685mil|Location1.Y=1291.787mil|Location2.Y=1442.189mil|Absolute=True">NetD78_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1993833">5.0643mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5351.787mil|Location2.X=5589.748mil|Location1.Y=4476.787mil|Location2.Y=4627.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5351.787mil|Location2.X=5589.748mil|Location1.Y=4476.787mil|Location2.Y=4627.189mil|Absolute=True">NetD7_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1973122">5.0117mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=571.787mil|Location2.X=818.685mil|Location1.Y=541.787mil|Location2.Y=697.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=571.787mil|Location2.X=818.685mil|Location1.Y=541.787mil|Location2.Y=697.189mil|Absolute=True">NetD82_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2041481">5.1854mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1506.787mil|Location2.X=1748.685mil|Location1.Y=541.787mil|Location2.Y=697.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1506.787mil|Location2.X=1748.685mil|Location1.Y=541.787mil|Location2.Y=697.189mil|Absolute=True">NetD83_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2056287">5.223mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2446.787mil|Location2.X=2688.685mil|Location1.Y=541.787mil|Location2.Y=702.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2446.787mil|Location2.X=2688.685mil|Location1.Y=541.787mil|Location2.Y=702.189mil|Absolute=True">NetD84_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2012192">5.111mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5256.787mil|Location2.X=5498.685mil|Location1.Y=541.787mil|Location2.Y=702.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5256.787mil|Location2.X=5498.685mil|Location1.Y=541.787mil|Location2.Y=702.189mil|Absolute=True">NetD85_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2012192">5.111mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8071.787mil|Location2.X=8308.685mil|Location1.Y=541.787mil|Location2.Y=707.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8071.787mil|Location2.X=8308.685mil|Location1.Y=541.787mil|Location2.Y=707.189mil|Absolute=True">NetD86_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2005965">5.0952mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9006.787mil|Location2.X=9248.685mil|Location1.Y=541.787mil|Location2.Y=712.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9006.787mil|Location2.X=9248.685mil|Location1.Y=541.787mil|Location2.Y=712.189mil|Absolute=True">NetD87_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2053613">5.2162mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9946.787mil|Location2.X=10182.937mil|Location1.Y=541.787mil|Location2.Y=707.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9946.787mil|Location2.X=10182.937mil|Location1.Y=541.787mil|Location2.Y=707.937mil|Absolute=True">NetD88_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2041481">5.1854mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10881.787mil|Location2.X=11128.685mil|Location1.Y=541.787mil|Location2.Y=697.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10881.787mil|Location2.X=11128.685mil|Location1.Y=541.787mil|Location2.Y=697.189mil|Absolute=True">NetD89_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2064543">5.2439mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6101.787mil|Location2.X=6338.685mil|Location1.Y=4476.787mil|Location2.Y=4629.748mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6101.787mil|Location2.X=6338.685mil|Location1.Y=4476.787mil|Location2.Y=4629.748mil|Absolute=True">NetD8_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1963012">4.9861mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11911.787mil|Location2.X=12153.685mil|Location1.Y=541.787mil|Location2.Y=689.748mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11911.787mil|Location2.X=12153.685mil|Location1.Y=541.787mil|Location2.Y=689.748mil|Absolute=True">NetD90_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1964543">4.9899mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12661.787mil|Location2.X=12898.956mil|Location1.Y=541.787mil|Location2.Y=695.742mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=12661.787mil|Location2.X=12898.956mil|Location1.Y=541.787mil|Location2.Y=695.742mil|Absolute=True">NetD91_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2016565">5.1221mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13411.787mil|Location2.X=13648.685mil|Location1.Y=541.787mil|Location2.Y=702.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=13411.787mil|Location2.X=13648.685mil|Location1.Y=541.787mil|Location2.Y=702.189mil|Absolute=True">NetD92_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1985255">5.0425mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6851.787mil|Location2.X=7097.018mil|Location1.Y=4476.787mil|Location2.Y=4627.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6851.787mil|Location2.X=7097.018mil|Location1.Y=4476.787mil|Location2.Y=4627.189mil|Absolute=True">NetD9_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1997875">5.0746mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1304.701mil|Location2.X=1483.331mil|Location1.Y=5098.441mil|Location2.Y=5295.26mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1304.701mil|Location2.X=1483.331mil|Location1.Y=5098.441mil|Location2.Y=5295.26mil|Absolute=True">NetF1_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="2582376">6.5592mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9818.441mil|Location2.X=11357.701mil|Location1.Y=5146.315mil|Location2.Y=5231.412mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9818.441mil|Location2.X=11357.701mil|Location1.Y=5146.315mil|Location2.Y=5231.412mil|Absolute=True">NetLED1_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="15150345">38.4819mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9818.441mil|Location2.X=11561.5mil|Location1.Y=5076mil|Location2.Y=5314.089mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9818.441mil|Location2.X=11561.5mil|Location1.Y=5076mil|Location2.Y=5314.089mil|Absolute=True">NetLED1_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="17551333">44.5804mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=312.126mil|Location2.X=1364.472mil|Location1.Y=4164.189mil|Location2.Y=5287.874mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=312.126mil|Location2.X=1364.472mil|Location1.Y=4164.189mil|Location2.Y=5287.874mil|Absolute=True">NetLEDPwrCON_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="20201418">51.3116mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2865.961mil|Location2.X=2914.709mil|Location1.Y=5216.315mil|Location2.Y=5361.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2865.961mil|Location2.X=2914.709mil|Location1.Y=5216.315mil|Location2.Y=5361.559mil|Absolute=True">NetLED_CHRG_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="913862">2.3212mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7318.795mil|Location2.X=7435.024mil|Location1.Y=5103.441mil|Location2.Y=5286.835mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7318.795mil|Location2.X=7435.024mil|Location1.Y=5103.441mil|Location2.Y=5286.835mil|Absolute=True">NetPWR_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1597020">4.0564mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11377.299mil|Location2.X=11661.5mil|Location1.Y=5076mil|Location2.Y=5313.685mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11377.299mil|Location2.X=11661.5mil|Location1.Y=5076mil|Location2.Y=5313.685mil|Absolute=True">NetQ1_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="3622607">9.2014mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1355.882mil|Location2.X=1990mil|Location1.Y=5081.315mil|Location2.Y=5298.685mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1355.882mil|Location2.X=1990mil|Location1.Y=5081.315mil|Location2.Y=5298.685mil|Absolute=True">NetR10_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="9200233">23.3686mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1330.291mil|Location2.X=1889.709mil|Location1.Y=5166.669mil|Location2.Y=5295.26mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1330.291mil|Location2.X=1889.709mil|Location1.Y=5166.669mil|Location2.Y=5295.26mil|Absolute=True">NetR12_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="5931758">15.0667mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2294.163mil|Location2.X=2977.701mil|Location1.Y=5200mil|Location2.Y=5380mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2294.163mil|Location2.X=2977.701mil|Location1.Y=5200mil|Location2.Y=5380mil|Absolute=True">NetR13_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="9108936">23.1367mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11990.607mil|Location2.X=12490mil|Location1.Y=1921mil|Location2.Y=2217.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11990.607mil|Location2.X=12490mil|Location1.Y=1921mil|Location2.Y=2217.716mil|Absolute=True">NetR2_1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="9625156">24.4479mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=110.961mil|Location2.X=157.701mil|Location1.Y=5186.315mil|Location2.Y=5356.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=110.961mil|Location2.X=157.701mil|Location1.Y=5186.315mil|Location2.Y=5356.559mil|Absolute=True">NetR7_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1155544">2.9351mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2529.74mil|Location2.X=2713.685mil|Location1.Y=5262.654mil|Location2.Y=5308.055mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2529.74mil|Location2.X=2713.685mil|Location1.Y=5262.654mil|Location2.Y=5308.055mil|Absolute=True">NetRPROG_2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="1299343">3.3003mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11126mil|Location2.X=11567.635mil|Location1.Y=1928.574mil|Location2.Y=2319mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11126mil|Location2.X=11567.635mil|Location1.Y=1928.574mil|Location2.Y=2319mil|Absolute=True">SWCLK</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="5137672">13.0497mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11126mil|Location2.X=11595.474mil|Location1.Y=1792.164mil|Location2.Y=2219mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11126mil|Location2.X=11595.474mil|Location1.Y=1792.164mil|Location2.Y=2219mil|Absolute=True">SWDIO</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="6822471">17.3291mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4261.591mil|Location2.X=7923.213mil|Location1.Y=5155mil|Location2.Y=5324.512mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4261.591mil|Location2.X=7923.213mil|Location1.Y=5155mil|Location2.Y=5324.512mil|Absolute=True">SysPWREN</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="38099621">96.773mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6048.047mil|Location2.X=11637.232mil|Location1.Y=354.189mil|Location2.Y=1811.829mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6048.047mil|Location2.X=11637.232mil|Location1.Y=354.189mil|Location2.Y=1811.829mil|Absolute=True">U1_RX</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="71058626">180.4889mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6107.102mil|Location2.X=11651.151mil|Location1.Y=328.108mil|Location2.Y=1797.91mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6107.102mil|Location2.X=11651.151mil|Location1.Y=328.108mil|Location2.Y=1797.91mil|Absolute=True">U1_TX</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="69922035">177.602mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1570mil|Location2.X=11623.312mil|Location1.Y=1734.189mil|Location2.Y=5214.039mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1570mil|Location2.X=11623.312mil|Location1.Y=1734.189mil|Location2.Y=5214.039mil|Absolute=True">USBDM</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="138646916">352.1632mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1610mil|Location2.X=11609.393mil|Location1.Y=1765.306mil|Location2.Y=5128.685mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1610mil|Location2.X=11609.393mil|Location1.Y=1765.306mil|Location2.Y=5128.685mil|Absolute=True">USBDP</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="137749205">349.883mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6048.047mil|Location2.X=12067.717mil|Location1.Y=376.63mil|Location2.Y=1797.91mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6048.047mil|Location2.X=12067.717mil|Location1.Y=376.63mil|Location2.Y=1797.91mil|Absolute=True">WAKEUP</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="73291743">186.161mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11879.252mil|Location2.X=12944.433mil|Location1.Y=2081.688mil|Location2.Y=2439.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11879.252mil|Location2.X=12944.433mil|Location1.Y=2081.688mil|Location2.Y=2439.433mil|Absolute=True">XT_IN</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="12820902">32.5651mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11893.171mil|Location2.X=12944.433mil|Location1.Y=1860.567mil|Location2.Y=2313.126mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11893.171mil|Location2.X=12944.433mil|Location1.Y=1860.567mil|Location2.Y=2313.126mil|Absolute=True">XT_OUT</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="12999567">33.0189mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=221.787mil|Location2.X=11776.426mil|Location1.Y=290mil|Location2.Y=4483.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=221.787mil|Location2.X=11776.426mil|Location1.Y=290mil|Location2.Y=4483.213mil|Absolute=True">col0</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="172920762">439.2187mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=976.787mil|Location2.X=11762.507mil|Location1.Y=310mil|Location2.Y=4483.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=976.787mil|Location2.X=11762.507mil|Location1.Y=310mil|Location2.Y=4483.213mil|Absolute=True">col1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="173681863">441.1519mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7726.787mil|Location2.X=13268.213mil|Location1.Y=441.787mil|Location2.Y=4483.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=7726.787mil|Location2.X=13268.213mil|Location1.Y=441.787mil|Location2.Y=4483.213mil|Absolute=True">col10</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="106675596">270.956mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8476.787mil|Location2.X=11706.829mil|Location1.Y=1191.787mil|Location2.Y=4483.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=8476.787mil|Location2.X=11706.829mil|Location1.Y=1191.787mil|Location2.Y=4483.213mil|Absolute=True">col11</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="71738380">182.2155mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9226.787mil|Location2.X=12518.213mil|Location1.Y=1064.189mil|Location2.Y=4483.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=9226.787mil|Location2.X=12518.213mil|Location1.Y=1064.189mil|Location2.Y=4483.213mil|Absolute=True">col12</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="75875122">192.7228mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10350mil|Location2.X=11768.213mil|Location1.Y=1691.626mil|Location2.Y=4483.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=10350mil|Location2.X=11768.213mil|Location1.Y=1691.626mil|Location2.Y=4483.213mil|Absolute=True">col13</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="45458119">115.4636mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11489.189mil|Location2.X=12518.213mil|Location1.Y=1956.413mil|Location2.Y=4483.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11489.189mil|Location2.X=12518.213mil|Location1.Y=1956.413mil|Location2.Y=4483.213mil|Absolute=True">col14</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="31057211">78.8853mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11535.031mil|Location2.X=13268.213mil|Location1.Y=1970.332mil|Location2.Y=4483.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=11535.031mil|Location2.X=13268.213mil|Location1.Y=1970.332mil|Location2.Y=4483.213mil|Absolute=True">col15</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="48075546">122.1119mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1721.787mil|Location2.X=11748.587mil|Location1.Y=297.161mil|Location2.Y=4483.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1721.787mil|Location2.X=11748.587mil|Location1.Y=297.161mil|Location2.Y=4483.213mil|Absolute=True">col2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="159352418">404.7551mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2476.787mil|Location2.X=11734.668mil|Location1.Y=313.066mil|Location2.Y=4483.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2476.787mil|Location2.X=11734.668mil|Location1.Y=313.066mil|Location2.Y=4483.213mil|Absolute=True">col3</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="141224272">358.7097mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3226.787mil|Location2.X=13042.717mil|Location1.Y=373.189mil|Location2.Y=4483.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3226.787mil|Location2.X=13042.717mil|Location1.Y=373.189mil|Location2.Y=4483.213mil|Absolute=True">col4</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="158883015">403.5629mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3976.787mil|Location2.X=13026.811mil|Location1.Y=389.094mil|Location2.Y=4483.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3976.787mil|Location2.X=13026.811mil|Location1.Y=389.094mil|Location2.Y=4483.213mil|Absolute=True">col5</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="156505108">397.523mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4726.787mil|Location2.X=13010.906mil|Location1.Y=405mil|Location2.Y=4483.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4726.787mil|Location2.X=13010.906mil|Location1.Y=405mil|Location2.Y=4483.213mil|Absolute=True">col6</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="150408779">382.0383mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5476.787mil|Location2.X=12995mil|Location1.Y=429.882mil|Location2.Y=4483.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5476.787mil|Location2.X=12995mil|Location1.Y=429.882mil|Location2.Y=4483.213mil|Absolute=True">col7</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="139926404">355.4131mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6226.787mil|Location2.X=12042.622mil|Location1.Y=441.787mil|Location2.Y=4483.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6226.787mil|Location2.X=12042.622mil|Location1.Y=441.787mil|Location2.Y=4483.213mil|Absolute=True">col8</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="106968848">271.7009mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6975mil|Location2.X=12518.213mil|Location1.Y=441.787mil|Location2.Y=4483.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6975mil|Location2.X=12518.213mil|Location1.Y=441.787mil|Location2.Y=4483.213mil|Absolute=True">col9</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="109035616">276.9505mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=661.315mil|Location2.X=13638.685mil|Location1.Y=1956.413mil|Location2.Y=4990mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=661.315mil|Location2.X=13638.685mil|Location1.Y=1956.413mil|Location2.Y=4990mil|Absolute=True">row0</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="164907797">418.8658mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=666.315mil|Location2.X=12935mil|Location1.Y=1942.493mil|Location2.Y=3837.307mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=666.315mil|Location2.X=12935mil|Location1.Y=1942.493mil|Location2.Y=3837.307mil|Absolute=True">row1</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="145081391">368.5067mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=866.315mil|Location2.X=12893.685mil|Location1.Y=1928.574mil|Location2.Y=3084.748mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=866.315mil|Location2.X=12893.685mil|Location1.Y=1928.574mil|Location2.Y=3084.748mil|Absolute=True">row2</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="133389133">338.8084mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=956.315mil|Location2.X=13633.685mil|Location1.Y=1820.003mil|Location2.Y=3829.748mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=956.315mil|Location2.X=13633.685mil|Location1.Y=1820.003mil|Location2.Y=3829.748mil|Absolute=True">row3</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="151318582">384.3492mm
+			</a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1126.315mil|Location2.X=13638.685mil|Location1.Y=1079.189mil|Location2.Y=3087.307mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1126.315mil|Location2.X=13638.685mil|Location1.Y=1079.189mil|Location2.Y=3087.307mil|Absolute=True">row4</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="158813013">403.3851mm
+			</a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\%E8%93%9D%E7%89%99%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98\PCB\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7\%E5%88%9B%E4%B8%96%E4%B8%80%E5%8F%B7.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=771.315mil|Location2.X=13648.685mil|Location1.Y=675mil|Location2.Y=1825.748mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=771.315mil|Location2.X=13648.685mil|Location1.Y=675mil|Location2.Y=1825.748mil|Absolute=True">row5</acronym></a></td>
+<td class="column2">Signal Layers Only</td>
+<td class="column3"><a name="coordinate" value="142828721">362.785mm
+			</a></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
