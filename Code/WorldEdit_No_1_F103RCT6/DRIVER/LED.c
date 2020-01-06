@@ -10,6 +10,19 @@ unsigned char LED_BreathEfectFlag = 0;
 unsigned char LED_Delt_Flag = 0;
 unsigned char LED_Status = 0;
 
+
+void LED_ESCOFF()
+{
+	
+	LED_RamClearWith(0);
+	LED_FreashRam();
+	//LED_SetBrightness(8);
+	LED_SetDisplay(0,LED_FLASH_OFF);
+	LED_Status = 0;
+	LED_GoToSleep();
+}
+
+
 void LED_GoToSleep()
 {
 	I2C_WriteByte(LED_HTK_Address_Wirte,LED_HTK_CMD_SLEEP);//πÿ±’–æ∆¨ ±÷”

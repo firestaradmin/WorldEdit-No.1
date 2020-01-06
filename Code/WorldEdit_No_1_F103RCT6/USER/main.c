@@ -21,7 +21,7 @@ bool g_USBModeFlag = FALSE;
 int main()
 {
 	sysInit();
-	//BTK05_Wake();//唤醒BTK05
+	BTK05_Wake();//唤醒BTK05
 	
 
 	while(1)
@@ -33,6 +33,7 @@ int main()
 				myKeyBoard_ScanKeyAndUpdataATBuffer();//键盘事件更新
 				if(g_myKeyBoard_DataWaitForUploadFlag == 1)
 				{
+					sleepTime1SCounter = 0;
 					g_myKeyBoard_DataWaitForUploadFlag = 0;
 					if(bDeviceState == CONFIGURED)//如果连接上了 USB
 						Keyboard_Send(BTK05_ATKeyDataPack+4);
@@ -52,7 +53,8 @@ int main()
 					system_Status = 1;
 					TIM_Cmd(TIM2, ENABLE);  //使能TIMx	
 					sleepTime1SCounter = 0;
-					if(LED_Status)	LED_WakeUp();	
+					if(LED_Status)	
+						LED_WakeUp();	
 				}
 			}
 			else if(sleepTime1SCounter > 1000)
@@ -75,7 +77,7 @@ int main()
 					BTK05_UART_SendKeyData(BTK05_ATKeyDataPack,12);
 					sleepTime1SCounter = 0;
 
-					if(ATKeyControlByte5 != 0)
+					if(ATKeyControlByte5 != 0) 
 					{
 						GPIO_SetBits(LED_LOGO_GPIOPort,LED_LOGO_GPIOPin);
 					}
@@ -96,18 +98,19 @@ int main()
 					TIM_Cmd(TIM2, ENABLE);  //使能TIMx	
 					sleepTime1SCounter = 0;
 					g_myKeyBoard_DataWaitForUploadFlag = 0;
-					if(LED_Status)	LED_WakeUp();
+					if(LED_Status)	
+						LED_WakeUp();
 					BTK05_UART_SendKeyData(BTK05_ATKeyDataPack,12);
 				}
 			}
 			//如果 键盘休眠计时器大于600   即600S没有按下任何按键则然键盘进入休眠状态
-			else if(sleepTime1SCounter > 400)
+			else if(sleepTime1SCounter > 400)   
 			{
 				//进入休眠模式...
 				BTK05_Sleep();//休眠BTK05
 				TIM_Cmd(TIM2, DISABLE);  //失能TIMx		
 				system_Status = 0;
-				LED_GoToSleep();	
+				LED_ESCOFF();	 
 			}
 		}
 		

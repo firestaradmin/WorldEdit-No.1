@@ -131,11 +131,7 @@ void myKeyBoard_KeyScan_rowScan(GPIO_TypeDef * 		col_GPIOPort,
 								uint8_t 			col_GPIOPin_Index,
 								const uint16_t *	p_col_GPIOPin);
 
-//键盘中心程序  一般只调用这个函数就够了
-//void myKeyBoard_Process_All()
-//{
 
-//}
 
 
 
@@ -236,7 +232,7 @@ void myKeyBoard_UpdataATDataPack()
 		else if(myKeyBoard_JudgeKeyPressWithName("Esc"))
 		{
 			
-			LED_GoToSleep();
+			LED_ESCOFF();
 			
 		}
 //		if(myKeyBoard_JudgeKeyPressWithName("ScrollLock"))

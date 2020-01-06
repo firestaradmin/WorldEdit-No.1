@@ -80,7 +80,7 @@ void LED_Off(void);//关灯
 void LED_Mode1(void);//全亮
 void LED_Mode2(void);//亮WASD 上下左右
 void LED_Mode3(void);//
-
+void LED_ESCOFF(void);
 
 void LED_BreathProcess(void);//呼吸灯处理函数
 void LED_AllLightOn(void);//test
