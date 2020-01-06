@@ -1,12 +1,12 @@
 Board Information Report
-Filename     : E:\MarsCloud\Doc\program\Embedded\stm32\Project\蓝牙机械键盘\PCB\创世一号\创世一号.PcbDoc
-Date         : 2019/12/14
-Time         : 17:44:40
+Filename     : E:\MarsCloud\Doc\Program\Embedded\stm32\Project\WorldEdit_1.0\PCB\创世一号\创世一号.PcbDoc
+Date         : 2020/1/6
+Time         : 23:07:08
 Time Elapsed : 00:00:00
 
 Routing Information
-    Routing completion, 94.09%
+    Routing completion, 100.00%
     Connections, 575
-    Connections routed, 541
-    Connections remaining, 34
+    Connections routed, 575
+    Connections remaining, 0
 count : 4
