@@ -35,6 +35,17 @@ unsigned char RxBuffer_Tail = 0;
 unsigned char RxBuffer_OK[10] ;//接收AT指令返回的OK
 unsigned char RxBuffer_OK_Tail = 0;
 
+unsigned char BTK05_ConsumerPack[8] = 	{	//Consumer键值数据包  音量加减之类的功能键
+								0x08,
+								0x00,
+								0xA1,
+								0x03,
+								0x00,
+								0x00,
+								0x00,
+								0x00,
+	
+										};							
 							
 enum BTK05_StatusTypedef BTK05_Status = BTK_SLEEP;					
 

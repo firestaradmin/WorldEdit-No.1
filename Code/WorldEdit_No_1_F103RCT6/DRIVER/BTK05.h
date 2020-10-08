@@ -23,7 +23,6 @@
 #define BTK05_CMD_BYTE4	0x01
 #define BTK05_CMD_BYTE6	0x00
 extern unsigned char BTK05_ATKeyDataPack[12];
-
 //BYTE5  变动值（ALT、SHIFT、CTRL、GUI 按键状态指示）
 //BYTE5 说明:
 //Bit  	Key
@@ -35,6 +34,8 @@ extern unsigned char BTK05_ATKeyDataPack[12];
 //5  	RIGHT SHIFT
 //6  	RIGHT ALT
 //7  	RIGHT GUI
+
+extern unsigned char BTK05_ConsumerPack[8];
 
 enum BTK05_StatusTypedef
 {

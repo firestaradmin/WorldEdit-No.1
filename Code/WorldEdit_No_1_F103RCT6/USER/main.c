@@ -20,7 +20,7 @@ bool g_USBModeFlag = FALSE;
 
 int main()
 {
-	sysInit();
+	//sysInit();
 	BTK05_Wake();//唤醒BTK05
 	
 
@@ -37,7 +37,7 @@ int main()
 					g_myKeyBoard_DataWaitForUploadFlag = 0;
 					if(bDeviceState == CONFIGURED)//如果连接上了 USB
 						Keyboard_Send(BTK05_ATKeyDataPack+4);
-					GPIO_SetBits(LED_LOGO_GPIOPort,LED_LOGO_GPIOPin);
+					//GPIO_SetBits(LED_LOGO_GPIOPort,LED_LOGO_GPIOPin);
 					
 				}
 			}
@@ -49,7 +49,7 @@ int main()
 					g_myKeyBoard_DataWaitForUploadFlag = 0;
 					if(bDeviceState == CONFIGURED)//如果连接上了 USB
 						Keyboard_Send(BTK05_ATKeyDataPack+4);
-					GPIO_SetBits(LED_LOGO_GPIOPort,LED_LOGO_GPIOPin);
+					//GPIO_SetBits(LED_LOGO_GPIOPort,LED_LOGO_GPIOPin);
 					system_Status = 1;
 					TIM_Cmd(TIM2, ENABLE);  //使能TIMx	
 					sleepTime1SCounter = 0;
@@ -242,7 +242,7 @@ void USB_Mode(void)
 	TIM_Cmd(TIM2, ENABLE);  		
 	//system_Status = 1;
 	//LED_GoToSleep();
-	GPIO_SetBits(LED_LOGO_GPIOPort,LED_LOGO_GPIOPin);
+	//GPIO_SetBits(LED_LOGO_GPIOPort,LED_LOGO_GPIOPin);
 }
 
 void BLUETEETH_Mode(void)
@@ -253,7 +253,7 @@ void BLUETEETH_Mode(void)
 	BTK05_Wake();//唤醒BTK05
 	TIM_Cmd(TIM2, ENABLE);  //使能TIMx	
 	sleepTime1SCounter = 0;
-	GPIO_ResetBits(LED_LOGO_GPIOPort,LED_LOGO_GPIOPin);
+	//GPIO_ResetBits(LED_LOGO_GPIOPort,LED_LOGO_GPIOPin);
 }
 
 

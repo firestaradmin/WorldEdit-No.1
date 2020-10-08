@@ -83,7 +83,6 @@ const unsigned char myKeyBoard_KeyMap_ATValue[6][16] =
 //	0xE0,0xE3,0xE2,0x2C,0xE6,0x00,0x76,0xE4,0x50,0x51,0x4F,0x00,0x00,0x00,0x00,0x00,
 //};
 
-
 const uint16_t key_Col_Pin[16] = 
 {
 	myKeyBoard_col0_GPIOPin,
@@ -119,7 +118,7 @@ unsigned char ATKeyControlByte5 = 0x00;//状态控制键字节 如Shift Ctrl键等
 KeyState_enumTypedef myKeyBoard_KeyState[6][16] = {KEYUNPRESSED};//当前按键状态
 KeyState_enumTypedef myKeyBoard_KeyState_Ex[6][16] = {KEYUNPRESSED};//上次按键状态
 
-
+u8 LOGO_LED_Status = 0;
 
 unsigned char myKeyBoard_KeyStateChangedFlag = 0;//键盘状态改变标志
 unsigned char myKeyBoard_KeyIsControl = 1;//键盘控制按键标志
@@ -149,16 +148,85 @@ void myKeyBoard_ScanKeyAndUpdataATBuffer()
 	}
 }
 
+/*
+*/
+
+
+//定义 FN组合键的枚举，方便下面键值处理
+enum{
+	none = 0,
+	Mute = 1,
+	VolumeUp = 2,
+	VolumeDown = 3,
+	PlayORPause = 4,
+	Stop = 5
+}	specialKeyenum = none;
+
+void ConsumerKeyProcess(void)//处理FN组合功能键，并发送给BTK05
+{
+	BTK05_ConsumerPack[5] = 0x00;//清零
+	switch(specialKeyenum)
+	{
+		case Mute:
+			//specialATKeyValueTemp = 0x7F;
+			BTK05_ConsumerPack[5] |= (0x01 << 0); 
+			break;
+		case VolumeUp:
+			BTK05_ConsumerPack[5] |= (0x01 << 2);
+			break;
+		case VolumeDown:
+			BTK05_ConsumerPack[5] |= (0x01 << 1);
+			break;
+		case PlayORPause:
+			BTK05_ConsumerPack[5] |= (0x01 << 3);
+			break;
+		case Stop:
+			BTK05_ConsumerPack[5] |= (0x01 << 4);
+			break;
+		default:
+			break;
+	}
+	
+	BTK05_UART_SendKeyData(BTK05_ConsumerPack,8);
+	BTK05_ConsumerPack[5] = 0x00;//清零
+	BTK05_UART_SendKeyData(BTK05_ConsumerPack,8);
+}
+
 void myKeyBoard_UpdataATDataPack()
 {
 	u8 i,j,k;
 	u8 AlreadeyExistflag = 0;
 	ATKeyControlByte5 = 0x00;//清楚控制按键键值
-	
+	//u8 specialKeyenum = 0;
 	if(myKeyBoard_KeyState[5][5] == KEYPRESSED)//判断FN键是否被按下
 	{
-		
-			
+		if(myKeyBoard_JudgeKeyPressWithName("F8"))
+		{
+			//specialKeyFlag = 1;
+			specialKeyenum = VolumeUp;
+		}
+		else if(myKeyBoard_JudgeKeyPressWithName("F7"))
+		{
+			specialKeyenum = VolumeDown;
+		}
+		else if(myKeyBoard_JudgeKeyPressWithName("F9"))
+		{
+			specialKeyenum = Mute;
+		}
+		else if(myKeyBoard_JudgeKeyPressWithName("F10"))
+		{
+			specialKeyenum = PlayORPause;
+		}
+		else if(myKeyBoard_JudgeKeyPressWithName("F11"))
+		{
+			specialKeyenum = Stop;
+		}
+		if(specialKeyenum != none)
+		{
+			ConsumerKeyProcess();//处理FN组合功能键，并发送给BTK05
+			specialKeyenum = none;//
+			//return;
+		}			
 	}
 	
 	if(myKeyBoard_KeyState[5][6] == KEYPRESSED)//判断Menu键是否被按下
@@ -166,13 +234,30 @@ void myKeyBoard_UpdataATDataPack()
 		if(myKeyBoard_JudgeKeyPressWithName("PauseBreak"))
 		{
 			if(!g_USBModeFlag)
+			{
 				USB_Mode();
+				LOGO_LED_Status = 0;
+			}
 			else 
 				BLUETEETH_Mode();
 			
 //			LED_LOGO_FLASH_3TIMES();
 		}
-		
+		else if(myKeyBoard_JudgeKeyPressWithName("ScrollLock"))
+		{
+			if(g_USBModeFlag)
+			{
+				if(!LOGO_LED_Status)
+				{
+					GPIO_SetBits(LED_LOGO_GPIOPort,LED_LOGO_GPIOPin);
+					LOGO_LED_Status = 1;
+				}else if(LOGO_LED_Status)
+				{
+					GPIO_ResetBits(LED_LOGO_GPIOPort,LED_LOGO_GPIOPin);
+					LOGO_LED_Status = 0;
+				}
+			}
+		}
 		else if(myKeyBoard_JudgeKeyPressWithName("Delete"))
 		{
 			BTK05_DeleteConnectInfo();
@@ -304,6 +389,42 @@ void myKeyBoard_UpdataATDataPack()
 	
 	//按键键值判断完毕后，将键盘数据包更新
 	BTK05_ATKeyDataPack[4] = ATKeyControlByte5;	//更新控制按键字节
+	
+//=========================================================思路正确的代码，但不是这样实现的，仅作纪念
+//	//处理FN组合键的键值更新
+//	u8 specialATKeyValueTemp = 0;
+//	if(specialKeyenum != none)//如果FN组合键被按下了
+//	{
+//		switch(specialKeyenum)
+//		{
+//			case Mute:
+//				//specialATKeyValueTemp = 0x7F;
+//				specialATKeyValueTemp = 0x04;
+//				break;
+//			case VolumeUp:
+//				specialATKeyValueTemp = 0x80;
+//				break;
+//			case VolumeDown:
+//				specialATKeyValueTemp = 0x81;
+//				break;
+//			default:
+//				break;
+//		}
+//		//循环	只要ATKeyData数据包有空位则插入该键值，并且break。
+//		//如果六次循环完毕也没插就无效，因为一次只能按下六个按键
+//		for(k = 0; k < 6; k++)
+//		{
+//			if(ATKeyData[k].ATKeyData == 0x00)//将按键AT值放入ATKeyData  Buffer
+//			{
+//				ATKeyData[k].ATKeyData = specialATKeyValueTemp;
+//				ATKeyData[k].rowN = 5;	//键盘中的第六行16列永远不可能被按下，所以FN组合键的AT键值在下一次扫描时，就会被清零
+//				ATKeyData[k].colN = 15;	//这是优化的键值取消方式，否则在发送玩AT值后，需要清空AT值数组中的FN组合键的AT值
+//				break;
+//			}
+//		}
+//		specialKeyenum = none;
+//	}
+//=========================================================思路正确的代码，但不是这样实现的，仅作纪念
 	for(k = 0; k < 6; k++)
 	{
 		BTK05_ATKeyDataPack[6 + k] = ATKeyData[k].ATKeyData;//更新普通按键

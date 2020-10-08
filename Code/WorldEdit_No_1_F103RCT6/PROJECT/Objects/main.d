@@ -1,12 +1,12 @@
 .\objects\main.o: ..\USER\main.c
 .\objects\main.o: ..\USER\main.h
-.\objects\main.o: D:\Program Files (x86)\keilv5STM32\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h
+.\objects\main.o: D:\Program Files\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include\stm32f10x.h
 .\objects\main.o: ..\CORE\core_cm3.h
-.\objects\main.o: D:\Program Files (x86)\keilv5STM32\ARM\ARMCC\Bin\..\include\stdint.h
-.\objects\main.o: D:\Program Files (x86)\keilv5STM32\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h
+.\objects\main.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\main.o: D:\Program Files\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include\system_stm32f10x.h
 .\objects\main.o: ..\USER\stm32f10x_conf.h
 .\objects\main.o: ..\FWLib\inc\stm32f10x_dma.h
-.\objects\main.o: D:\Program Files (x86)\keilv5STM32\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h
+.\objects\main.o: D:\Program Files\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include\stm32f10x.h
 .\objects\main.o: ..\FWLib\inc\stm32f10x_exti.h
 .\objects\main.o: ..\FWLib\inc\stm32f10x_flash.h
 .\objects\main.o: ..\FWLib\inc\stm32f10x_gpio.h
